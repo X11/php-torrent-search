@@ -33,9 +33,19 @@ class TorrentSearch
             $results = array_merge($results, $provider->search($query, $page));
         });
 
-        return $results;
-        //return $this->filter($results);
+        return $this->filter($results);
     }
+
+    /**
+     * Filter torrents
+     *
+     * @return void
+     */
+    protected function filter($torrents)
+    {
+        return array_unique($torrents, SORT_REGULAR);
+    }
+    
     
 
 }
