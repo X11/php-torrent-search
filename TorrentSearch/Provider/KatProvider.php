@@ -15,6 +15,7 @@ class KatProvider extends AbstractProvider
      */
     public function parseUrl($query, $page = 1)
     {
+        $query = str_replace(['\'', ':'], '', $query);
         return sprintf("https://kat.cr/usearch/%s/%s/?field=seeders&sorder=desc", $query, $page);
     }
 
