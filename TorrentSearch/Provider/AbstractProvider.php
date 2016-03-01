@@ -19,7 +19,8 @@ abstract class AbstractProvider
         $opts_array = array(
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_URL =>  $url,
-            CURLOPT_FOLLOWLOCATION => true
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_ENCODING => ''
         );
         curl_setopt_array($curl, $opts_array);
         $resp = curl_exec($curl);

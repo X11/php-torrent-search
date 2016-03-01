@@ -26,7 +26,7 @@ class KatProvider extends AbstractProvider
      */
     public function transform($content)
     {
-        $crawler = new Crawler(gzdecode($content));
+        $crawler = new Crawler($content);
         
         return $crawler->filter('tr[id^="torrent_"]')->each(function ($node){
             return (new Torrent())
