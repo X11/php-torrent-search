@@ -1,8 +1,6 @@
 <?php
 namespace TorrentSearch\Provider;
 
-use Buzz\Browser;
-
 abstract class AbstractProvider 
 {
 
@@ -11,13 +9,26 @@ abstract class AbstractProvider
     abstract public function transform($content);
 
     /**
-     * @var Browser
+     * undocumented function
+     *
+     * @return void
      */
-    protected $browser;
+    public function fetch($url)
+    {
+        $curl = curl_init();
+        $opts_array = array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL =>  $url,
+            CURLOPT_FOLLOWLOCATION => true
+        );
+        curl_setopt_array($curl, $opts_array);
+        $resp = curl_exec($curl);
+        curl_close($curl);
 
-    public function __construct()
-    { 
-        $this->browser = new Browser();
+        if ($resp != "")
+            return $resp;
+        else
+            throw new \Exception("CURL empty string");
     }
 
     /**
@@ -30,16 +41,12 @@ abstract class AbstractProvider
         $url = $this->parseUrl($query, $page);
 
         try {
-            $res = $this->browser->get($url);
+            $res = $this->fetch($url);
         } catch (\Exception $e) {
             throw $e;
         }
 
-        if ($res->getStatusCode() != 200) {
-            return null;
-        } else {
-            return $this->transform($res->getContent());
-        }
+        return $this->transform($res);
     }
          
 }

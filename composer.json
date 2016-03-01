@@ -6,7 +6,6 @@
     "license": "MIT",
     "require": {
         "php": ">=5.6",
-        "kriswallsmith/buzz": "~0.15",
         "symfony/property-access": "~3.0",
         "symfony/dom-crawler": "~3.0",
         "symfony/css-selector": "~3.0"
