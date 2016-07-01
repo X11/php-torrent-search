@@ -1,43 +1,42 @@
 <?php
+
 namespace TorrentSearch\Provider;
 
-abstract class AbstractProvider 
+abstract class AbstractProvider
 {
-
     abstract public function parseUrl($query, $page);
 
     abstract public function transform($content);
 
     /**
-     * undocumented function
-     *
-     * @return void
+     * undocumented function.
      */
     public function fetch($url)
     {
         $curl = curl_init();
         $opts_array = array(
             CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_URL =>  $url,
+            CURLOPT_URL => $url,
             CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_ENCODING => ''
+            CURLOPT_ENCODING => '',
         );
         curl_setopt_array($curl, $opts_array);
         $resp = curl_exec($curl);
         curl_close($curl);
 
-        if ($resp != "")
+        if ($resp != '') {
             return $resp;
-        else
-            throw new \Exception("CURL empty string");
+        } else {
+            throw new \Exception('CURL empty string');
+        }
     }
 
     /**
-     * Search
+     * Search.
      *
-     * @return Array
+     * @return array
      */
-    public function search($query, $page=null)
+    public function search($query, $page = null)
     {
         $url = $this->parseUrl($query, $page);
 
@@ -49,5 +48,4 @@ abstract class AbstractProvider
 
         return $this->transform($res);
     }
-         
 }

@@ -1,12 +1,11 @@
 <?php
+
 namespace TorrentSearch;
 
 use TorrentSearch\Provider\KatProvider;
-use TorrentSearch\Provider\ExtraTorrentProvider;
 
 class TorrentSearch
 {
-
     protected $providers;
 
     /**
@@ -20,16 +19,14 @@ class TorrentSearch
     }
 
     /**
-     * @param String
-     * @param Integer
-     *
-     * @return void
+     * @param string
+     * @param int
      */
     public function search($query, $page = null)
     {
         $results = array();
 
-        array_walk($this->providers, function($provider) use ($query, $page, &$results) {
+        array_walk($this->providers, function ($provider) use ($query, $page, &$results) {
             $results = array_merge($results, $provider->search($query, $page));
         });
 
@@ -37,15 +34,10 @@ class TorrentSearch
     }
 
     /**
-     * Filter torrents
-     *
-     * @return void
+     * Filter torrents.
      */
     protected function filter($torrents)
     {
         return array_unique($torrents, SORT_REGULAR);
     }
-    
-    
-
 }

@@ -2,8 +2,8 @@
 
 namespace TorrentSearch\Model;
 
-class Torrent {
-
+class Torrent
+{
     protected $name;
     protected $magnet;
     protected $size;
@@ -11,7 +11,7 @@ class Torrent {
     protected $peers;
 
     /**
-     * Getter for name=""
+     * Getter for name="".
      *
      * return string
      */
@@ -21,9 +21,10 @@ class Torrent {
     }
 
     /**
-     * Setter for name
+     * Setter for name.
      *
      * @param string $name
+     *
      * @return Torrent
      */
     public function setName($name)
@@ -34,7 +35,7 @@ class Torrent {
     }
 
     /**
-     * Getter for magnet
+     * Getter for magnet.
      *
      * return string
      */
@@ -44,9 +45,10 @@ class Torrent {
     }
 
     /**
-     * Setter for magnet
+     * Setter for magnet.
      *
      * @param string $magnet
+     *
      * @return Torrent
      */
     public function setMagnet($magnet)
@@ -57,7 +59,7 @@ class Torrent {
     }
 
     /**
-     * Getter for Size
+     * Getter for Size.
      *
      * return string
      */
@@ -67,9 +69,10 @@ class Torrent {
     }
 
     /**
-     * Setter for Size
+     * Setter for Size.
      *
      * @param string $Size
+     *
      * @return Torrent
      */
     public function setSize($size)
@@ -80,7 +83,7 @@ class Torrent {
     }
 
     /**
-     * Getter for Seeds
+     * Getter for Seeds.
      *
      * return string
      */
@@ -90,9 +93,10 @@ class Torrent {
     }
 
     /**
-     * Setter for Seeds
+     * Setter for Seeds.
      *
      * @param string $Seeds
+     *
      * @return Torrent
      */
     public function setSeeds($seeds)
@@ -103,7 +107,7 @@ class Torrent {
     }
 
     /**
-     * Getter for Peers
+     * Getter for Peers.
      *
      * return string
      */
@@ -113,9 +117,10 @@ class Torrent {
     }
 
     /**
-     * Setter for Peers
+     * Setter for Peers.
      *
      * @param string $Peers
+     *
      * @return Torrent
      */
     public function setPeers($peers)
@@ -126,13 +131,10 @@ class Torrent {
     }
 
     /**
-     * Get torrent seed / peer ratio
-     *
-     * @return void
+     * Get torrent seed / peer ratio.
      */
     public function getSeedPeerRatio()
     {
         return $this->seeds / $this->peers;
     }
-    
 }
