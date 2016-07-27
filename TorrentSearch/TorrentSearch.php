@@ -3,6 +3,7 @@
 namespace TorrentSearch;
 
 use TorrentSearch\Provider\KatProvider;
+use TorrentSearch\Provider\ExtratorrentProvider;
 
 class TorrentSearch
 {
@@ -14,7 +15,8 @@ class TorrentSearch
     public function __construct()
     {
         $this->providers = [
-            new KatProvider(),
+            //new KatProvider(),
+            new ExtratorrentProvider(),
         ];
     }
 

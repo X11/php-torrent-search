@@ -135,6 +135,9 @@ class Torrent
      */
     public function getSeedPeerRatio()
     {
+        if ($this->seeds === 0) return 0;
+        if ($this->peers === 0) return $this->seeds;
+
         return $this->seeds / $this->peers;
     }
 }

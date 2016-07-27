@@ -7,7 +7,7 @@ use TorrentSearch\TorrentSearch;
 
 $ts = new TorrentSearch();
 
-$torrents = $ts->search('Stan lee');
+$torrents = $ts->search('arch linux');
 
 function sortTorrent($a, $b)
 {
