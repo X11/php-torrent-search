@@ -8,14 +8,15 @@ use TorrentSearch\Model\Torrent;
 class ExtratorrentProvider extends AbstractProvider
 {
     /**
-     * @param string 
+     * @param string
      * @param int
+     *
+     * @return string
      */
     public function parseUrl($query, $page = 1)
     {
         $query = str_replace(['\'', ':'], '', $query);
 
-        
         return sprintf('http://extratorrent.cc/search/?search=%s&page=%s&new=1', urlencode($query), $page);
     }
 
@@ -35,19 +36,25 @@ class ExtratorrentProvider extends AbstractProvider
             $link = $node->filter('a[href^="/torrent/"]')->attr('href');
 
             $torrent->setName($data->eq(2)->text())
-                    ->setSize($data->eq(3)->text())
-                    ->setSeeds($data->eq(4)->text())
-                    ->setPeers($data->eq(5)->text())
+                    ->setSize($data->eq(4)->text())
+                    ->setSeeds($data->eq(5)->text())
+                    ->setPeers($data->eq(6)->text())
                     ->setMagnet($this->getMagnet($link));
 
             return $torrent;
         });
     }
 
+    /**
+     * @param string
+     *
+     * @return string
+     */
     private function getMagnet($link)
     {
-        $content = $this->fetch('http://extratorrent.cc' . $link);
+        $content = $this->fetch('http://extratorrent.cc'.$link);
         $crawler = new Crawler($content);
+
         return $crawler->filter('[title="Magnet link"]')->attr('href');
     }
 }
